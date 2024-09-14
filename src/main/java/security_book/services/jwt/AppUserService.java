@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import security_book.models.AppUser;
 import security_book.repositories.AppUserRepository;
 
+// Класс AppUserService предоставляет реализацию UserDetailsService для аутентификации пользователей в Spring Security.
+// Он загружает данные пользователя из базы данных по email и возвращает объект UserDetails, необходимый для проверки
+// учетных данных и авторизации.
 @Service
 @RequiredArgsConstructor
 public class AppUserService {
@@ -17,7 +20,7 @@ public class AppUserService {
     @Autowired
     private AppUserRepository appUserRepository;
 
-    public UserDetailsService getUserDetailsService() {
+    public UserDetailsService getDetailsService() {
 
         UserDetailsService detailsService = new UserDetailsService() {
             @Override
@@ -30,3 +33,8 @@ public class AppUserService {
         return detailsService;
     }
 }
+
+// Класс использует AppUserRepository для поиска пользователя в базе данных и преобразует найденного AppUser в UserDetails.
+
+// Метод getDetailsService() возвращает анонимную реализацию UserDetailsService, которую можно использовать в
+// конфигурации Spring Security.
