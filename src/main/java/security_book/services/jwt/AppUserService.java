@@ -12,7 +12,7 @@ import security_book.repositories.AppUserRepository;
 
 // Класс AppUserService предоставляет реализацию UserDetailsService для аутентификации пользователей в Spring Security.
 // Он загружает данные пользователя из базы данных по email и возвращает объект UserDetails, необходимый для проверки
-// учетных данных и авторизации.
+// учетных данных и авторизации..
 @Service
 @RequiredArgsConstructor
 public class AppUserService {
