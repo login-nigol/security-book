@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 // Класс JwtSecurityService предоставляет функциональность для работы с JSON Web Tokens в контексте безопасности приложения.
-// Он отвечает за генерацию, валидацию и извлечение информации из JWT токенов.
+// Он отвечает за генерацию, валидацию и извлечение информации из JWT токенов..
 @Service
 public class JwtSecurityService {
 
