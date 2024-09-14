@@ -25,7 +25,7 @@ import security_book.services.jwt.JwtSecurityService;
 //Извлечение JWT токена из заголовка Authorization
 //Проверка наличия и валидности токена
 //Аутентификация пользователя на основе данных из токена
-//Установка аутентификационной информации в SecurityContextHolder
+//Установка аутентификационной информации в SecurityContextHolder.
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
