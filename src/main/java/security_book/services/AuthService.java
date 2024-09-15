@@ -16,7 +16,7 @@ import security_book.services.jwt.JwtSecurityService;
 import java.util.HashMap;
 
 //AuthService, предоставляет основные функции аутентификации и управления пользователями в приложении. Он включает
-// в себя методы для регистрации, входа и обновления токенов.
+// в себя методы для регистрации, входа и обновления токенов..
 @Service
 @RequiredArgsConstructor
 public class AuthService {
