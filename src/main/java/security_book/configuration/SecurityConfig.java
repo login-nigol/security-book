@@ -22,7 +22,7 @@ import security_book.services.jwt.AppUserService;
 import lombok.RequiredArgsConstructor;
 
 // Класс SecurityConfig отвечает за конфигурацию безопасности в Spring-приложении. Он настраивает аутентификацию и
-// авторизацию, определяя правила доступа к различным эндпоинтам.
+// авторизацию, определяя правила доступа к различным эндпоинтам..
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
