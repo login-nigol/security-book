@@ -21,6 +21,8 @@ import security_book.enums.AppRole;
 import security_book.services.jwt.AppUserService;
 import lombok.RequiredArgsConstructor;
 
+// Класс SecurityConfig отвечает за конфигурацию безопасности в Spring-приложении. Он настраивает аутентификацию и
+// авторизацию, определяя правила доступа к различным эндпоинтам.
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -77,7 +79,14 @@ public class SecurityConfig {
     }
 }
 
-
+//Настройка JWT-аутентификации с использованием JwtAuthenticationFilter
+//Определение PasswordEncoder для шифрования паролей
+//Конфигурация AuthenticationProvider для проверки учётных данных
+//Настройка SecurityFilterChain для определения правил доступа к ресурсам
+//Отключение CSRF и настройка CORS
+//Определение публичных эндпоинтов и эндпоинтов, требующих авторизации
+//Настройка stateless сессий для работы с JWT (означает конфигурацию приложения таким образом, чтобы оно не хранило состояние сессии на сервере, а вместо этого использовало JWT для аутентификации и авторизации пользователей)
+//Обработка исключений аутентификации
 
 
 
