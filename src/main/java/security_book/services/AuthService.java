@@ -1,6 +1,7 @@
 package security_book.services;
 
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,18 +25,54 @@ public class AuthService {
     private final AppUserRepository appUserRepository;
     private final PasswordEncoder passwordEncoder;
 
+    private final ModelMapper modelMapper;
+
     private final JwtSecurityService jwtSecurityService;
     private final AuthenticationManager authenticationManager;
 
-    public AppUser register(RegisterRequestDto registerRequestDto) { // регистрация пользователя
+    // Метод для регистрации пользователя и возврата RegisterResponseDto
+    public RegisterResponseDto register(RegisterRequestDto registerRequestDto) {
+
         AppUser appUser = new AppUser();
-        appUser.setEmail(registerRequestDto.getEmail());
         appUser.setFullName(registerRequestDto.getFullName());
+        appUser.setEmail(registerRequestDto.getEmail());
         appUser.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
         appUser.setRole(AppRole.USER);
 
-        return appUserRepository.save(appUser);
+        // Сохраняем пользователя в базе
+        AppUser savedUser = appUserRepository.save(appUser);
+
+        // генерируем токен
+        String token = jwtSecurityService.generateToken(savedUser);
+
+        // Маппим AppUser в RegisterResponseDto с помощью ModelMapper
+        RegisterResponseDto registerResponseDto = modelMapper.map(savedUser, RegisterResponseDto.class);
+
+        // добавляем токен в ответ
+        registerResponseDto.setJwtToken(token);
+
+        return registerResponseDto;
     }
+
+//    public AppUser register(RegisterRequestDto registerRequestDto) { // регистрация пользователя
+//        AppUser appUser = new AppUser();
+//        appUser.setFullName(registerRequestDto.getFullName());
+//        appUser.setEmail(registerRequestDto.getEmail());
+//        appUser.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
+//        appUser.setRole(AppRole.USER); // Задаем роль по умолчанию
+//
+//        return appUserRepository.save(appUser);
+//    }
+
+//    public AppUser register(RegisterRequestDto registerRequestDto) { // регистрация пользователя
+//        AppUser appUser = new AppUser();
+//        appUser.setEmail(registerRequestDto.getEmail());
+//        appUser.setFullName(registerRequestDto.getFullName());
+//        appUser.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
+//        appUser.setRole(AppRole.USER);
+//
+//        return appUserRepository.save(appUser);
+//    }
 
     public LoginResponseDto login(LoginRequestDto loginRequestDto) {
 
